@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Girlfriend?</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 500px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #ff3366;
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    .no {
+      background-color: #eee;
+      color: #333;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    #response {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #444;
+    }
+
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 5s infinite;
+      opacity: 0.6;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-800px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .slideshow {
+      margin-top: 1rem;
+    }
+
+    .slideshow img {
+      width: 100%;
+      border-radius: 10px;
+      height: auto;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <audio autoplay loop>
+    <source src="romantic.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="card">
+    <h1>Will you be my girlfriend, <span style="color: #ff69b4;">ankit singh chuahan</span>? 💖</h1>
+    <h2>You're the light in my life, and I want to be yours forever.</h2>
+
+    <button class="yes" onclick="respond('yes')">Yes</button>
+    <button class="no" onclick="respond('no')">No</button>
+
+    <p id="response"></p>
+
+    <div class="slideshow">
+      <img id="slideshow-img" src="img1.jpg" alt="Memories">
+    </div>
+  </div>
+
+  <script>
+    // Heart animation
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 300);
+
+    // Response message
+    function respond(answer) {
+      const res = document.getElementById('response');
+      if (answer === 'yes') {
+        res.innerHTML = "Yay! You’ve made me the happiest person ever! ❤️🎉";
+      } else {
+        res.innerHTML = "That's okay... You'll always be special to me. 💔";
+      }
+    }
+
+    // Slideshow
+    const images = ['sasar/C:\Users\ankus\OneDrive\Pictures/JPG File .jpg', 'img2.jpg', 'img3.jpg'];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      document.getElementById('slideshow-img').src = images[index];
+    }, 3000);
+  </script>
+
+</body>
+</html>
